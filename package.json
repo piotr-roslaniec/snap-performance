@@ -49,5 +49,8 @@
   "packageManager": "yarn@3.2.1",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "@wasm-tool/wasm-pack-plugin": "^1.6.0"
   }
 }

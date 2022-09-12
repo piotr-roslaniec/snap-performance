@@ -12,7 +12,8 @@ export const initializeWasm = async (): Promise<InitOutput> => {
   try {
     const wasmBuffer = arrayBufferFromBase64(WASM_PROGRAM_BASE64);
     const wasmModule = await WebAssembly.compile(wasmBuffer);
-    return await wasmProver.default(wasmModule);
+    console.log(Object.keys(wasmProver));
+    return await wasmProver.run_sha3_256(wasmModule);
   } catch (error) {
     console.error('Failed to initialize WebAssembly module.', error);
     throw error;
