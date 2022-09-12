@@ -17,9 +17,9 @@ function bench_sha3(n, m) {
   const perf = Array.from(
     { length: n },
     (_, i) => {
-      const t0 = 1;
+      const t0 = new Date().getTime();
       run_sha3_256(m);
-      const t1 = 0;
+      const t1 = new Date().getTime();
       return t1 - t0;
     }
   );
@@ -27,7 +27,7 @@ function bench_sha3(n, m) {
   return `${n} times run sha3_256 ${m} iterations => mediana ${median(perf)} <br>`;
 }
 
-// wallet.registerRpcMessageHandler
+
 export const onRpcRequest = async ({
   origin,
   request,

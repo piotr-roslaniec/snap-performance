@@ -11,8 +11,8 @@ const SNAP_ID = 'local:http://localhost:6969'
 const TEST_DATA = [
   [20, 20],
   [40, 400],
-  // [50, 10000],
-  // [10, 1000000], 
+  [50, 10000],
+  [10, 1000000], 
 ];
 
 const median = arr => {
@@ -25,9 +25,9 @@ function bench_sha3(n, m) {
   const perf = Array.from(
     { length: n },
     (_, i) => {
-      const t0 = performance.now();
+      const t0 = new Date().getTime();
       run_sha3_256(m);
-      const t1 = performance.now();
+      const t1 = new Date().getTime();
       return t1 - t0;
     }
   );
@@ -78,5 +78,5 @@ const connect = async () => {
 async function onSnapButton() {
   await connect();
   const result = await requestSnap('bench', [TEST_DATA]);
-  wasm_snap.innerHTML = `Browser Wasm \n${result}`;
+  wasm_snap.innerHTML = `Snap wasm \n${result}`;
 }
