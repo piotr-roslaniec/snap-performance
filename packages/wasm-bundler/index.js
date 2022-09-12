@@ -1,3 +1,3 @@
-const pkg = require('rust-rng');
+const pkg = require('rust-perf');
 
 module.exports = pkg;

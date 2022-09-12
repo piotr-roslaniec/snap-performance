@@ -1,10 +1,8 @@
 import { OnRpcRequestHandler } from '@metamask/snap-types';
 import {
   InitOutput,
-  // add_random,
-  add_random_with_seed
+  run_sha3_256,
 } from 'wasm-bundler';
-import { getRandomBytes } from './random';
 
 import { initializeWasm } from './wasm';
 
@@ -24,8 +22,10 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
     // Uncomment in order to reproduce the original error
     // case 'add_random':
     //   return add_random(request.params[0]);
-    case 'add_random_with_seed':
-      return add_random_with_seed(request.params[0], getRandomBytes());
+    case 'run_sha3_256':
+      const t1 = Date.now();
+      run_sha3_256(request.params[0]);
+      return Date.now() - t1;
     default:
       throw new Error('Method not found.');
   }

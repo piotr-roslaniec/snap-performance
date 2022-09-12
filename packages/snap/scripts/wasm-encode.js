@@ -3,7 +3,7 @@ const path = require('path');
 
 const WASM_PATH = path.join(
   __dirname,
-  '../../../rust-rng/pkg/rust_rng_bg.wasm',
+  '../../../rust-perf/pkg/rust_perf_bg.wasm',
 );
 
 async function main(encoding) {

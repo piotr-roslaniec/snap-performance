@@ -4,11 +4,11 @@ This repo compares performance of plain JS and WASM inside a snap to a native ex
 
 ## Problem description
 
-See `rust-rng/README.md` for more details.
+See `rust-perf/README.md` for more details.
 
 ## Usage
 
-First, follow instructions in `rust-rng/README.md`.
+First, follow instructions in `rust-perf/README.md`.
 
 Then, run:
 

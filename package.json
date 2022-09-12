@@ -14,8 +14,7 @@
   "license": "(MIT-0 OR Apache-2.0)",
   "author": "",
   "workspaces": [
-    "packages/*",
-    "rust-rng/pkg"
+    "packages/*"
   ],
   "scripts": {
     "build": "yarn workspaces foreach --parallel --topological --verbose run build",
@@ -36,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "concurrently": "^7.3.0",
-    "eslint": "^8.21.0",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.8.2",

@@ -4,11 +4,14 @@ on:
   push:
     branches: [main]
   pull_request:
+    branches: ["*"]
 
 jobs:
   build-lint-test:
     name: Build, Lint, and Test
     runs-on: ubuntu-20.04
+    container:
+      image: ocet/rust-wasm-pack:main
     strategy:
       matrix:
         node-version: [16.x, 18.x]
@@ -29,6 +32,10 @@ jobs:
         with:
           path: ${{ steps.yarn-cache-dir.outputs.YARN_CACHE_DIR }}
           key: yarn-cache-${{ runner.os }}-${{ steps.yarn-version.outputs.YARN_VERSION }}-${{ hashFiles('yarn.lock') }}
+      - name: Build rust project
+        run: |
+          cd rust-perf
+          bash ./scripts/build.sh
       - run: yarn install --immutable
       - run: yarn build
       - run: yarn lint
@@ -40,12 +47,6 @@ jobs:
             echo "Working tree dirty after building"
             exit 1
           fi
-  #      - name: Validate RC changelog
-  #        if: ${{ startsWith(github.head_ref, 'release/') }}
-  #        run: yarn auto-changelog validate --rc
-  #      - name: Validate changelog
-  #        if: ${{ !startsWith(github.head_ref, 'release/') }}
-  #        run: yarn auto-changelog validate
   all-jobs-pass:
     name: All jobs pass
     runs-on: ubuntu-20.04

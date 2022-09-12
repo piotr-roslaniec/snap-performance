@@ -1,5 +1,5 @@
 [package]
-name = "rust-rng"
+name = "rust-perf"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,8 +7,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-getrandom = { version = "0.2", features = ["js"] }
 wasm-bindgen = "0.2.82"
 wasm-bindgen-test = "0.3.32"
-rand = { version = "0.8.5" }
 console_error_panic_hook = "0.1.7"
+sha3 = "0.10.4"
