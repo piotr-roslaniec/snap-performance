@@ -1,4 +1,5 @@
 import { run_sha3_256 } from "rust-perf";
+import { sha3_256 } from "js-sha3";
 
 const wasm_snap = document.getElementById('wasm-snap');
 const wasm_browser = document.getElementById('wasm-browser');
@@ -9,10 +10,10 @@ snap_btn.addEventListener('click', onSnapButton);
 
 const SNAP_ID = 'local:http://localhost:6969'
 const TEST_DATA = [
-  [20, 20],
-  [40, 400],
-  [50, 10000],
-  [10, 1000000], 
+  [5, 1000],
+  [5, 10000],
+  [5, 100000],
+  [5, 1000000],
 ];
 
 const median = arr => {
@@ -20,6 +21,41 @@ const median = arr => {
     nums = [...arr].sort((a, b) => a - b);
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 };
+
+function run_sha3_256_js(m) {
+  for (let i = 0; i < m; i++) {
+    sha3_256("abc")
+  }
+}
+
+function bench_sha3js(n, m) {
+  const perf = Array.from(
+    { length: n },
+    (_, i) => {
+      const t0 = new Date().getTime();
+      run_sha3_256_js(m);
+      const t1 = new Date().getTime();
+      return t1 - t0;
+    }
+  );
+
+  return `${n} times run sha3_256 ${m} iterations => mediana ${median(perf)} [ms] std dev ${std_dev(perf)}<br>`;
+}
+
+function std_dev(arr) {
+  let mean = arr.reduce((acc, curr) => {
+    return acc + curr
+  }, 0) / arr.length;
+
+
+  arr = arr.map((el) => {
+    return (el - mean) ** 2
+  })
+
+  let total = arr.reduce((acc, curr) => acc + curr, 0);
+
+  return Math.sqrt(total / arr.length);
+}
 
 function bench_sha3(n, m) {
   const perf = Array.from(
@@ -32,11 +68,12 @@ function bench_sha3(n, m) {
     }
   );
 
-  return `${n} times run sha3_256 ${m} iterations => mediana ${median(perf)} <br>`;
+  return `${n} times run sha3_256 ${m} iterations => mediana ${median(perf)} [ms] std dev ${std_dev(perf)}<br>`;
 }
 
 function onBrowserBtn() {
-  wasm_browser.innerHTML = `Browser Wasm \n ${TEST_DATA.map(([n, m]) => bench_sha3(n, m))}`;
+  wasm_browser.innerHTML = `Browser Wasm \n ${TEST_DATA.map(([n, m]) => bench_sha3(n, m))}
+  Browser JS \n ${TEST_DATA.map(([n, m]) => bench_sha3js(n, m))}`;
 }
 
 
@@ -77,6 +114,7 @@ const connect = async () => {
 
 async function onSnapButton() {
   await connect();
-  const result = await requestSnap('bench', [TEST_DATA]);
-  wasm_snap.innerHTML = `Snap wasm \n${result}`;
+  const result_wasm = await requestSnap('bench', [TEST_DATA]);
+  const result_js = await requestSnap('bench-js', [TEST_DATA]);
+  wasm_snap.innerHTML = `Snap wasm \n${result_wasm}\n Snap js \n${result_js}`;
 }

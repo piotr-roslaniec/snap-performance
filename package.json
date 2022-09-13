@@ -51,6 +51,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@wasm-tool/wasm-pack-plugin": "^1.6.0"
+    "@wasm-tool/wasm-pack-plugin": "^1.6.0",
+    "js-sha3": "^0.8.0"
   }
 }

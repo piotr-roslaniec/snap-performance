@@ -11,5 +11,6 @@ Run tests
 Build wasm
 
 ```bash
-./scripts/build.sh
+./scripts/build-web.sh
+./scripts/build-snap.sh
 ```
