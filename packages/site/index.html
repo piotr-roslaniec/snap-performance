@@ -4,12 +4,19 @@
     <meta charset="utf-8">
     <title>Snap Benchmark</title>
   </head>
+  <style>
+  
+  table, th, td {
+    border: 1px solid;
+  }
+  
+  </style>
   <body>
     <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
     <pre id="test-data"></pre>
-    <button id="btn-wasm-snap">Run wasm in snap </button>
+    <button id="btn-wasm-snap">Benchmark snap</button>
     <pre id="wasm-snap"></pre>
-    <button id="btn-wasm-browser">Run wasm in browser</button>
+    <button id="btn-wasm-browser">Benchmark browser</button>
     <pre id="wasm-browser"></pre>
     <script src="./bootstrap.js"></script>
   </body>

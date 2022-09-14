@@ -11029,22 +11029,22 @@ __metadata:
 
 "rust-perf@file:../../rust-perf/bundler/pkg::locator=site%40workspace%3Apackages%2Fsite":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/bundler/pkg#../../rust-perf/bundler/pkg::hash=853252&locator=site%40workspace%3Apackages%2Fsite"
-  checksum: 94999ab4c57f33db4a565ee14481fb9f5d20e9b022602bfc460198f8d0d9c45bafe7c1e445a64b5d3f6aab7eef704ed4f8b277b2d43858ca01f8c5f1e4b695be
+  resolution: "rust-perf@file:../../rust-perf/bundler/pkg#../../rust-perf/bundler/pkg::hash=409007&locator=site%40workspace%3Apackages%2Fsite"
+  checksum: 8d6f6dc247a41f3d8042e80722ac9772de0bf2147e3159074e61de04a4b4e800f1c6ba08726714bb21e22bada06c94818c5b2c276c6ca8a8d5ee5a2199b95d52
   languageName: node
   linkType: hard
 
 "rust-perf@file:../../rust-perf/web/pkg::locator=snap%40workspace%3Apackages%2Fsnap":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=89ac9c&locator=snap%40workspace%3Apackages%2Fsnap"
-  checksum: 38b7722fc3389222bfa0f073a8d34ee67acde0f6585f2ec45253c61b6772e23a7a685c7e64200d4b54664002f55e074be28aaa6621580b2b3cd2aa3b03180e09
+  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=7cbf18&locator=snap%40workspace%3Apackages%2Fsnap"
+  checksum: 5c16d873d9fb7cf0f4a261241663055aae9fbeebe21debdf45b9ed87d89a944852bae249f06c6bbe9167294e1be014daeeb8ccd633da72aacd4ba0b82c810207
   languageName: node
   linkType: hard
 
 "rust-perf@file:../../rust-perf/web/pkg::locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=89ac9c&locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler"
-  checksum: 38b7722fc3389222bfa0f073a8d34ee67acde0f6585f2ec45253c61b6772e23a7a685c7e64200d4b54664002f55e074be28aaa6621580b2b3cd2aa3b03180e09
+  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=7cbf18&locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler"
+  checksum: 5c16d873d9fb7cf0f4a261241663055aae9fbeebe21debdf45b9ed87d89a944852bae249f06c6bbe9167294e1be014daeeb8ccd633da72aacd4ba0b82c810207
   languageName: node
   linkType: hard
 
@@ -11413,7 +11413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"site@workspace:packages/site":
+"site@workspace:*, site@workspace:packages/site":
   version: 0.0.0-use.local
   resolution: "site@workspace:packages/site"
   dependencies:
@@ -11471,6 +11471,7 @@ __metadata:
     "@metamask/snaps-cli": ^0.18.1
     rimraf: ^3.0.2
     rust-perf: "file:../../rust-perf/web/pkg"
+    site: "workspace:*"
     typescript: ^4.7.4
     wasm-bundler: "workspace:*"
   languageName: unknown

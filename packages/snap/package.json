@@ -41,6 +41,7 @@
     "@metamask/snaps-cli": "^0.18.1",
     "rimraf": "^3.0.2",
     "rust-perf": "file:../../rust-perf/web/pkg",
+    "site": "workspace:*",
     "typescript": "^4.7.4",
     "wasm-bundler": "workspace:*"
   },
