@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm -rf pkg && \
+rm -rf web/pkg && \
 wasm-pack build --release --target web --out-dir web/pkg

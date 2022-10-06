@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm -rf pkg && \
+rm -rf bundler/pkg && \
 wasm-pack build --release --out-dir bundler/pkg

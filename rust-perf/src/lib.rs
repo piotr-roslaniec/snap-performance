@@ -12,6 +12,28 @@ pub fn run_sha3_256(iterations: usize) {
     }
 }
 
+#[wasm_bindgen]
+pub fn vec_allocation(iterations: usize) {
+    console_error_panic_hook::set_once();
+    let mut acc = vec![];
+
+    for i in 0..iterations {
+        acc.push(vec![i; 100])
+    }
+}
+
+#[wasm_bindgen]
+pub fn u8_arr_copy(iterations: usize, arr_to_copy: &[u8]) -> js_sys::Uint8Array {
+    console_error_panic_hook::set_once();
+    let mut acc = vec![];
+
+    for _ in 0..iterations {
+        acc.append(&mut arr_to_copy.to_vec())
+    }
+
+    unsafe { js_sys::Uint8Array::view(&acc) }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -29,5 +51,29 @@ mod tests {
     #[wasm_bindgen_test]
     fn runs_hashcash_100k_times() {
         run_sha3_256(100_000);
+    }
+
+    #[test]
+    #[wasm_bindgen_test]
+    fn runs_vec_allocation_once() {
+        vec_allocation(1);
+    }
+
+    #[test]
+    #[wasm_bindgen_test]
+    fn runs_vec_allocation_100k_times() {
+        vec_allocation(100_000);
+    }
+
+    #[test]
+    #[wasm_bindgen_test]
+    fn u8_arr_copy_once() {
+        u8_arr_copy(1, &[1, 2, 3, 4, 56, 7, 89]);
+    }
+
+    #[test]
+    #[wasm_bindgen_test]
+    fn u8_arr_copy_100k_times() {
+        u8_arr_copy(100_000, &[1, 2, 3, 4, 56, 7, 89]);
     }
 }
