@@ -11029,22 +11029,22 @@ __metadata:
 
 "rust-perf@file:../../rust-perf/bundler/pkg::locator=site%40workspace%3Apackages%2Fsite":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/bundler/pkg#../../rust-perf/bundler/pkg::hash=aad267&locator=site%40workspace%3Apackages%2Fsite"
-  checksum: 9e173cd37d5ce18ddbb4c3ed6e38f1c71e308fcca91dafed4302788d00a90a2a02e747bfcb796938d9a2d72e0e3147276100893efb2794c4e5ae7bb52847ab81
+  resolution: "rust-perf@file:../../rust-perf/bundler/pkg#../../rust-perf/bundler/pkg::hash=db1f07&locator=site%40workspace%3Apackages%2Fsite"
+  checksum: b2aa31db4758eb0f07dbd4079a55d1793e7ea678c2421a695b2482eb2d6d489fc3156b23e556332c7bd7cc8b07f029713edb01d944e59afc44da3205b358470c
   languageName: node
   linkType: hard
 
 "rust-perf@file:../../rust-perf/web/pkg::locator=snap%40workspace%3Apackages%2Fsnap":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=c4c345&locator=snap%40workspace%3Apackages%2Fsnap"
-  checksum: d81ee8b3bd527ef47ecf3e8b889d1201b8e0a1ba95cb378b46a07be1e66b851ee0a8ce2096ceb240248bb27706b25152a09ab89bb90d702c3dce419cc71f888c
+  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=e48750&locator=snap%40workspace%3Apackages%2Fsnap"
+  checksum: 645210f18b6e1efe2071919aa4f850e39c88df66e92b2304adfe5e0daa51163a5d2eae0c9b48e074c34f32ab4015f08916ff896a5bd1ef11e4f67e89b4f650a2
   languageName: node
   linkType: hard
 
 "rust-perf@file:../../rust-perf/web/pkg::locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=c4c345&locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler"
-  checksum: d81ee8b3bd527ef47ecf3e8b889d1201b8e0a1ba95cb378b46a07be1e66b851ee0a8ce2096ceb240248bb27706b25152a09ab89bb90d702c3dce419cc71f888c
+  resolution: "rust-perf@file:../../rust-perf/web/pkg#../../rust-perf/web/pkg::hash=e48750&locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler"
+  checksum: 645210f18b6e1efe2071919aa4f850e39c88df66e92b2304adfe5e0daa51163a5d2eae0c9b48e074c34f32ab4015f08916ff896a5bd1ef11e4f67e89b4f650a2
   languageName: node
   linkType: hard
 

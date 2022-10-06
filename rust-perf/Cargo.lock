@@ -116,6 +116,7 @@ name = "rust-perf"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
+ "js-sys",
  "sha3",
  "wasm-bindgen",
  "wasm-bindgen-test",

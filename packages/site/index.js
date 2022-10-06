@@ -1,14 +1,20 @@
-import { run_sha3_256 as sha3_wasm, vec_alocation } from "rust-perf";
+import { run_sha3_256 as sha3_wasm, vec_allocation, u8_arr_copy } from "rust-perf";
 import { sha3_256 as sha3_js } from "js-sha3";
 
 const SNAP_ID = 'local:http://localhost:6969'
 const TEST_DATA = [
-  [5, 100],
-  // [5, 10000],
-  // [5, 100000],
-  // [5, 1000000],
+  [5, [1000]],
+  [5, [10000]],
+  [5, [100000]],
+  [5, [1000000]],
 ];
 
+const TEST_DATA_MEM = [
+  [5, [1000, new Uint8Array(10000).fill(1,0)]],
+  [5, [1000, new Uint8Array(10000).fill(1,0)]],
+  [5, [10000, new Uint8Array(10000).fill(1,0)]],
+  [5, [100000, new Uint8Array(10000).fill(1,0)]],
+];
 // UI
 
 const snap = document.getElementById('wasm-snap');
@@ -20,26 +26,26 @@ snap_btn.addEventListener('click', onSnapButton);
 
 async function onSnapButton() {
   await connect();
-  const wasm = await requestSnap('bench-wasm', [TEST_DATA]);
-  const js = await requestSnap('bench-js', [TEST_DATA]);
+  const wasm = await requestSnap('bench-wasm', [TEST_DATA_MEM]);
+  // const js = await requestSnap('bench-js', [TEST_DATA]);
   snap.innerHTML = `
     <h3>Snap Wasm</h3>
-    ${formatData(TEST_DATA, wasm)}
-    <h3>Snap JS</h3>
-    ${formatData(TEST_DATA, js)}`;
+    ${formatData(TEST_DATA, wasm)}`;
+    // <h3>Snap JS</h3>
+    // ${formatData(TEST_DATA, js)}`;
 }
 
 function onBrowserBtn() {
   // PUT HERE FUNCTION TO TEST WASM
-  const wasm = TEST_DATA.map(([n, m]) => bench(vec_alocation, n, m));
+  const wasm = TEST_DATA_MEM.map(([n, m]) => bench(u8_arr_copy, n, m));
   // PUT HERE FUNCTION TO TEST JS
-  const js = TEST_DATA.map(([n, m]) => bench(js_sha3, n, m));
+  // const js = TEST_DATA.map(([n, m]) => bench(js_sha3, n, m));
 
   browser.innerHTML = `
     <h3>Browser Wasm</h3>
-    ${formatData(TEST_DATA, wasm)}
-    <h3>Browser JS</h3>
-    ${formatData(TEST_DATA, js)}`;
+    ${formatData(TEST_DATA, wasm)}`
+    // <h3>Browser JS</h3>
+    // ${formatData(TEST_DATA, js)}`;
 }
 
 
@@ -90,8 +96,9 @@ export function bench(fn, n, m) {
     { length: n },
     (_, i) => {
       const t0 = new Date().getTime();
-      fn(m);
+      const result = fn(...m);
       const t1 = new Date().getTime();
+      console.log(result)
       return t1 - t0;
     }
   );
