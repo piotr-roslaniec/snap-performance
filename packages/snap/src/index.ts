@@ -1,22 +1,25 @@
 import {
   InitOutput,
   run_sha3_256,
+  vec_allocation
 } from 'wasm-bundler';
 import { initializeWasm } from './wasm';
 import { sha3_256 as sha3_js } from "js-sha3";
 
 let wasm: InitOutput;
 
-export function js_sha3(m) {
+export function js_sha3(m: number) {
   for (let i = 0; i < m; i++) {
     sha3_js("abc");
   }
 }
 
-export function bench(fn, n, m) {
+export function bench(fn: (m: number) => void, n: number, m: number) {
+  console.log(fn);
+  console.log("Running bench", { fn: fn.name, runs: n, iterations: m });
   const results = Array.from(
     { length: n },
-    (_, i) => {
+    (_, _i) => {
       const t0 = new Date().getTime();
       fn(m);
       const t1 = new Date().getTime();
@@ -29,7 +32,7 @@ export function bench(fn, n, m) {
 
 
 export const onRpcRequest = async ({
-  origin,
+  _origin,
   request,
 }) => {
   if (!wasm) {
@@ -41,7 +44,7 @@ export const onRpcRequest = async ({
   switch (request.method) {
     case 'bench-wasm':
       // PUT HERE FUNCTION TO TEST WASM
-      return request.params[0].map(([n, m]) => bench(run_sha3_256, n, m))
+      return request.params[0].map(([n, m]) => bench(vec_allocation, n, m))
     case 'bench-js':
       // PUT HERE FUNCTION TO TEST JS
       return request.params[0].map(([n, m]) => bench(js_sha3, n, m))

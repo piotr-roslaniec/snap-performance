@@ -1,12 +1,12 @@
-import { run_sha3_256 as sha3_wasm } from "rust-perf";
+import { run_sha3_256 as sha3_wasm, vec_alocation } from "rust-perf";
 import { sha3_256 as sha3_js } from "js-sha3";
 
 const SNAP_ID = 'local:http://localhost:6969'
 const TEST_DATA = [
-  [5, 1000],
-  [5, 10000],
-  [5, 100000],
-  [5, 1000000],
+  [5, 100],
+  // [5, 10000],
+  // [5, 100000],
+  // [5, 1000000],
 ];
 
 // UI
@@ -22,7 +22,7 @@ async function onSnapButton() {
   await connect();
   const wasm = await requestSnap('bench-wasm', [TEST_DATA]);
   const js = await requestSnap('bench-js', [TEST_DATA]);
-  snap.innerHTML =`
+  snap.innerHTML = `
     <h3>Snap Wasm</h3>
     ${formatData(TEST_DATA, wasm)}
     <h3>Snap JS</h3>
@@ -31,7 +31,7 @@ async function onSnapButton() {
 
 function onBrowserBtn() {
   // PUT HERE FUNCTION TO TEST WASM
-  const wasm = TEST_DATA.map(([n, m]) => bench(sha3_wasm, n, m));
+  const wasm = TEST_DATA.map(([n, m]) => bench(vec_alocation, n, m));
   // PUT HERE FUNCTION TO TEST JS
   const js = TEST_DATA.map(([n, m]) => bench(js_sha3, n, m));
 
@@ -85,6 +85,7 @@ export function js_sha3(m) {
 }
 
 export function bench(fn, n, m) {
+  console.log("Running bench", { fn: fn.name, runs: n, iterations: m });
   const results = Array.from(
     { length: n },
     (_, i) => {
