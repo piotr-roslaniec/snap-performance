@@ -9,10 +9,10 @@ import { sha3_256 as sha3_js } from "js-sha3";
 
 
 const TEST_DATA_MEM = [
-  [5, [1000, new Uint8Array(10000).fill(1,0)]],
-  [5, [1000, new Uint8Array(10000).fill(1,0)]],
-  [5, [10000, new Uint8Array(10000).fill(1,0)]],
-  [5, [100000, new Uint8Array(10000).fill(1,0)]],
+  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
+  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
+  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
+  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
 ];
 let wasm: InitOutput;
 

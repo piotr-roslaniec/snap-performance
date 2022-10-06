@@ -28,7 +28,7 @@ pub fn u8_arr_copy(iterations: usize, arr_to_copy: &[u8]) -> js_sys::Uint8Array 
     let mut acc = vec![];
 
     for _ in 0..iterations {
-        acc.append(&mut arr_to_copy.to_vec())
+        acc.push(arr_to_copy.to_vec()[0])
     }
 
     unsafe { js_sys::Uint8Array::view(&acc) }
