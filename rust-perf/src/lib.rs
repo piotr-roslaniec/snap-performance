@@ -34,6 +34,15 @@ pub fn u8_arr_copy(iterations: usize, arr_to_copy: &[u8]) -> js_sys::Uint8Array 
     unsafe { js_sys::Uint8Array::view(&acc) }
 }
 
+#[wasm_bindgen]
+pub fn manta_gen_params(iterations: usize) {
+    console_error_panic_hook::set_once();
+
+    for _ in 0..iterations {
+        manta_pay::parameters::generate().unwrap();
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -75,5 +84,11 @@ mod tests {
     #[wasm_bindgen_test]
     fn u8_arr_copy_100k_times() {
         u8_arr_copy(100_000, &[1, 2, 3, 4, 56, 7, 89]);
+    }
+
+    #[test]
+    #[wasm_bindgen_test]
+    fn manta_gen_params_once() {
+        manta_pay::parameters::generate().unwrap();
     }
 }
