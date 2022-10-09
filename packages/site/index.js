@@ -9,12 +9,6 @@ const TEST_DATA = [
   [5, [1000000]],
 ];
 
-const TEST_DATA_MEM = [
-  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
-  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
-  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
-  [5, [1, new Uint8Array(10000000).fill(1, 0)]],
-];
 
 const TEST_DATA_MANTA = [[1, [1]]];
 // UI
@@ -28,11 +22,11 @@ snap_btn.addEventListener('click', onSnapButton);
 
 async function onSnapButton() {
   await connect();
-  const wasm = await requestSnap('bench-wasm', [TEST_DATA_MEM]);
+  const wasm = await requestSnap('bench-wasm', [TEST_DATA_MANTA]);
   // const js = await requestSnap('bench-js', [TEST_DATA]);
   snap.innerHTML = `
     <h3>Snap Wasm</h3>
-    ${formatData(TEST_DATA, wasm)}`;
+    ${formatData(TEST_DATA_MANTA, wasm)}`;
   // <h3>Snap JS</h3>
   // ${formatData(TEST_DATA, js)}`;
 }
