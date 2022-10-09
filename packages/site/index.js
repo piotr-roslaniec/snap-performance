@@ -1,4 +1,4 @@
-import { run_sha3_256 as sha3_wasm, vec_allocation, u8_arr_copy } from "rust-perf";
+import { run_sha3_256 as sha3_wasm, vec_allocation, u8_arr_copy, manta_gen_params } from "rust-perf";
 import { sha3_256 as sha3_js } from "js-sha3";
 
 const SNAP_ID = 'local:http://localhost:6969'
@@ -9,12 +9,8 @@ const TEST_DATA = [
   [5, [1000000]],
 ];
 
-const TEST_DATA_MEM = [
-  [5, [1000, new Uint8Array(10000).fill(1,0)]],
-  [5, [1000, new Uint8Array(10000).fill(1,0)]],
-  [5, [10000, new Uint8Array(10000).fill(1,0)]],
-  [5, [100000, new Uint8Array(10000).fill(1,0)]],
-];
+
+const TEST_DATA_MANTA = [[1, [1]]];
 // UI
 
 const snap = document.getElementById('wasm-snap');
@@ -26,26 +22,28 @@ snap_btn.addEventListener('click', onSnapButton);
 
 async function onSnapButton() {
   await connect();
-  const wasm = await requestSnap('bench-wasm', [TEST_DATA_MEM]);
+  const wasm = await requestSnap('bench-wasm', [TEST_DATA_MANTA]);
   // const js = await requestSnap('bench-js', [TEST_DATA]);
   snap.innerHTML = `
     <h3>Snap Wasm</h3>
-    ${formatData(TEST_DATA, wasm)}`;
-    // <h3>Snap JS</h3>
-    // ${formatData(TEST_DATA, js)}`;
+    ${formatData(TEST_DATA_MANTA, wasm)}`;
+  // <h3>Snap JS</h3>
+  // ${formatData(TEST_DATA, js)}`;
 }
 
 function onBrowserBtn() {
   // PUT HERE FUNCTION TO TEST WASM
-  const wasm = TEST_DATA_MEM.map(([n, m]) => bench(u8_arr_copy, n, m));
+
+  const wasm = TEST_DATA_MANTA.map(([n, m]) => bench(manta_gen_params, n, m));
+  console.log(wasm)
   // PUT HERE FUNCTION TO TEST JS
   // const js = TEST_DATA.map(([n, m]) => bench(js_sha3, n, m));
 
   browser.innerHTML = `
     <h3>Browser Wasm</h3>
-    ${formatData(TEST_DATA, wasm)}`
-    // <h3>Browser JS</h3>
-    // ${formatData(TEST_DATA, js)}`;
+    ${formatData(TEST_DATA_MANTA,wasm)}`
+  // <h3>Browser JS</h3>
+  // ${formatData(TEST_DATA, js)}`;
 }
 
 
@@ -54,7 +52,7 @@ function formatData(testData, results) {
   let formatted = "";
   for (const [n, m] of testData) {
     const result = results[index];
-    formatted += `<tr> <td> ${n} </td>  <td> ${m} </td> <td> ${median(result)} </td> <td> ${std(result).toFixed(2)} </td> </tr>`
+    formatted += `<tr> <td> ${n} </td>  <td> ${m.join(',').slice(10)}... </td> <td> ${median(result)} </td> <td> ${std(result).toFixed(2)} </td> </tr>`
     index++;
   }
 
@@ -64,8 +62,8 @@ function formatData(testData, results) {
 // MATH
 
 const median = arr => {
-  const mid = Math.floor(arr.length / 2),
-    nums = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(arr.length / 2);
+  const nums = [...arr].sort((a, b) => a - b);
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 };
 
@@ -91,17 +89,18 @@ export function js_sha3(m) {
 }
 
 export function bench(fn, n, m) {
-  console.log("Running bench", { fn: fn.name, runs: n, iterations: m });
+  console.log("Running bench", { fn: fn.name, runs: n, params: m });
   const results = Array.from(
     { length: n },
     (_, i) => {
       const t0 = new Date().getTime();
       const result = fn(...m);
       const t1 = new Date().getTime();
-      console.log(result)
+      console.log(i, t1 - t0, result)
       return t1 - t0;
     }
   );
+  console.log(results);
 
   return results;
 }
