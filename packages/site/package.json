@@ -8,7 +8,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "rust-perf": "file:../../rust-perf/bundler/pkg"
+    "rust-perf": "file:../../rust-perf/pkg-bundler-debug"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.0",

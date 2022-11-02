@@ -13,9 +13,7 @@ console_error_panic_hook = "0.1.7"
 sha3 = "0.10.4"
 js-sys = "0.3.9"
 ark-ec = "0.3.0"
-manta-pay = {path = "../manta-rs/manta-pay", features = ["groth16", "test"]}
-manta-accounting = {path = "../manta-rs/manta-accounting",version ="*" }
-manta-benchmark = {path = "../manta-rs/manta-benchmark", version ="*"}
-manta-parameters = {path = "../manta-rs/manta-parameters", version ="*"}
-manta-trusted-setup = {path = "../manta-rs/manta-trusted-setup", version ="*"}
-manta-util = {path = "../manta-rs/manta-util", version ="*"}
+getrandom = { version = "0.2", features = ["js"] }
+rand = { version = "0.8.5" }
+ark-bls12-377 = "0.3.0"
+ark-ff = "0.3.0"

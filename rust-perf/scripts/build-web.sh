@@ -1,4 +1,5 @@
 #!/bin/sh
 
-rm -rf bundler/pkg && \
-wasm-pack build --release --out-dir bundler/pkg
+rm -rf web/pkg* && \
+wasm-pack build --release --target web --out-dir pkg-web && \
+wasm-pack build --debug --target web --out-dir pkg-web-debug
