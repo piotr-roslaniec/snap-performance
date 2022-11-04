@@ -11050,22 +11050,22 @@ __metadata:
 
 "rust-perf@file:../../rust-perf/pkg-bundler-debug::locator=site%40workspace%3Apackages%2Fsite":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/pkg-bundler-debug#../../rust-perf/pkg-bundler-debug::hash=1863a4&locator=site%40workspace%3Apackages%2Fsite"
-  checksum: ab864492175a2720de7e30390ab22a0653f59c368b7b9e7f45bd5cf624c49b9ea31f934daadb25e49c8a275f88a2feafb0ea828b9323f4212d19374de2cc0166
+  resolution: "rust-perf@file:../../rust-perf/pkg-bundler-debug#../../rust-perf/pkg-bundler-debug::hash=eb5bdc&locator=site%40workspace%3Apackages%2Fsite"
+  checksum: a588cc189bbbe409c7741cd4ff4b830210dd916ed00e20b4e2d6cd94bfe9b1a44b4455f681cc23c47fcd9dc4c36b0b9a6e21c411d7cbfe014271ccb61d4bb32b
   languageName: node
   linkType: hard
 
 "rust-perf@file:../../rust-perf/pkg-web-debug::locator=snap%40workspace%3Apackages%2Fsnap":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/pkg-web-debug#../../rust-perf/pkg-web-debug::hash=ddf296&locator=snap%40workspace%3Apackages%2Fsnap"
-  checksum: 1de75f0b2756019291a001ba985dd5d721335fb3f4f66926b21b6d0bb4244d23ea54f01015996dc10640e99e9fd1ff2481a7c464231d4fc0c594fddb6710999e
+  resolution: "rust-perf@file:../../rust-perf/pkg-web-debug#../../rust-perf/pkg-web-debug::hash=175357&locator=snap%40workspace%3Apackages%2Fsnap"
+  checksum: 0e0cec0c73a1d5be5ced89478e1a37ff25dc0f7d2b998de725b24277f8d6e5314786cf5efbbc68b0a5fc5bd80a7f590106359a62ce7f81e9a255fe0bd1ebcfe6
   languageName: node
   linkType: hard
 
 "rust-perf@file:../../rust-perf/pkg-web-debug::locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler":
   version: 0.1.0
-  resolution: "rust-perf@file:../../rust-perf/pkg-web-debug#../../rust-perf/pkg-web-debug::hash=ddf296&locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler"
-  checksum: 1de75f0b2756019291a001ba985dd5d721335fb3f4f66926b21b6d0bb4244d23ea54f01015996dc10640e99e9fd1ff2481a7c464231d4fc0c594fddb6710999e
+  resolution: "rust-perf@file:../../rust-perf/pkg-web-debug#../../rust-perf/pkg-web-debug::hash=175357&locator=wasm-bundler%40workspace%3Apackages%2Fwasm-bundler"
+  checksum: 0e0cec0c73a1d5be5ced89478e1a37ff25dc0f7d2b998de725b24277f8d6e5314786cf5efbbc68b0a5fc5bd80a7f590106359a62ce7f81e9a255fe0bd1ebcfe6
   languageName: node
   linkType: hard
 

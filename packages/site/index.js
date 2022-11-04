@@ -1,4 +1,4 @@
-import { arkworks_mul_assign } from "rust-perf";
+import { arkworks_mul_assign, arkworks_compute_msm } from "rust-perf";
 
 const RNG_SEED_SIZE = 32;
 
@@ -14,10 +14,15 @@ function getRandomBytes() {
 const SNAP_ID = 'local:http://localhost:6969'
 const RNG_SEED = getRandomBytes();
 const RUNS = 5;
+// arkworks_mul_assign
+// const TEST_DATA = [
+//   [RUNS, [10000, RNG_SEED]],
+//   [RUNS, [100000, RNG_SEED]],
+//   [RUNS, [1000000, RNG_SEED]],
+// ];
+// arkworks_compute_msm
 const TEST_DATA = [
-  [RUNS, [10000, RNG_SEED]],
-  [RUNS, [100000, RNG_SEED]],
-  [RUNS, [1000000, RNG_SEED]],
+  [RUNS, [1, RNG_SEED]],
 ];
 
 // UI
@@ -38,7 +43,8 @@ async function onSnapButton() {
 }
 
 function onBrowserBtn() {
-  const wasm = TEST_DATA.map(([n, seed]) => bench(arkworks_mul_assign, n, seed));
+  // const wasm = TEST_DATA.map(([n, seed]) => bench(arkworks_mul_assign, n, seed));
+  const wasm = TEST_DATA.map(([n, seed]) => bench(arkworks_compute_msm, n, seed));
   console.log(wasm)
 
   browser.innerHTML = `

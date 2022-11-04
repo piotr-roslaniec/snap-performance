@@ -1,4 +1,4 @@
-import { InitOutput, arkworks_mul_assign } from 'wasm-bundler';
+import { InitOutput, arkworks_mul_assign, arkworks_compute_msm } from 'wasm-bundler';
 import { getRandomBytes } from './random';
 import { initializeWasm } from './wasm';
 
@@ -21,10 +21,15 @@ export function bench(fn, n: number, m: any[]) {
 export const onRpcRequest = async ({ _origin, request }) => {
   const RNG_SEED = getRandomBytes();
   const RUNS = 5;
+  // arkworks_mul_assign
+  // const TEST_DATA = [
+  //   [RUNS, [10000, RNG_SEED]],
+  //   [RUNS, [100000, RNG_SEED]],
+  //   [RUNS, [1000000, RNG_SEED]],
+  // ];
+  // arkworks_compute_msm
   const TEST_DATA = [
-    [RUNS, [10000, RNG_SEED]],
-    [RUNS, [100000, RNG_SEED]],
-    [RUNS, [1000000, RNG_SEED]],
+    [RUNS, [1, RNG_SEED]],
   ];
 
   if (!wasm) {
@@ -35,7 +40,8 @@ export const onRpcRequest = async ({ _origin, request }) => {
   switch (request.method) {
     case 'bench-wasm':
       return TEST_DATA.map(([n, seed]) =>
-        bench(arkworks_mul_assign, n as number, seed as any),
+        // bench(arkworks_mul_assign, n as number, seed as any),
+        bench(arkworks_compute_msm, n as number, seed as any),
       );
     default:
       throw new Error('Method not found.');
