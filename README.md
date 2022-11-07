@@ -15,12 +15,3 @@ yarn install
 
 For more info see the original `README.md` in `README.old.md`.
 Go to: localhos:8008
-
-# Result
-
-1. Bench: sha3 (computation)
-
-| benchmark                | Chromium [ms] | Snap [ms] | Perf change |
-| ------------------------ | ------------- | --------- | ----------- |
-| arkworks_multiply_assign | 33478         | 34833     | ~104%       |
-| arkworks_compute_msm     | 77125         | 325595    | ~422%       |

@@ -307,6 +307,7 @@ dependencies = [
  "ark-bls12-381",
  "ark-ec",
  "ark-ff",
+ "ark-std",
  "console_error_panic_hook",
  "getrandom",
  "js-sys",

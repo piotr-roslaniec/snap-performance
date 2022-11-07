@@ -40,7 +40,7 @@
     "@metamask/snap-types": "^0.18.1",
     "@metamask/snaps-cli": "^0.18.1",
     "rimraf": "^3.0.2",
-    "rust-perf": "file:../../rust-perf/pkg-web-debug",
+    "rust-perf": "file:../../rust-perf/pkg-web",
     "site": "workspace:*",
     "typescript": "^4.7.4",
     "wasm-bundler": "workspace:*"

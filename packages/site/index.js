@@ -1,4 +1,8 @@
-import { arkworks_mul_assign, arkworks_compute_msm } from "rust-perf";
+import { 
+  arkworks_mul_assign, 
+  arkworks_compute_msm,
+  arkworks_compute_msm_modified 
+} from "rust-perf";
 
 const RNG_SEED_SIZE = 32;
 
@@ -45,6 +49,7 @@ async function onSnapButton() {
 function onBrowserBtn() {
   // const wasm = TEST_DATA.map(([n, seed]) => bench(arkworks_mul_assign, n, seed));
   const wasm = TEST_DATA.map(([n, seed]) => bench(arkworks_compute_msm, n, seed));
+  // const wasm = TEST_DATA.map(([n, seed]) => bench(arkworks_compute_msm_modified, n, seed));
   console.log(wasm)
 
   browser.innerHTML = `
