@@ -12,7 +12,7 @@
   },
   "license": "GPL-3.0",
   "dependencies": {
-    "rust-perf": "file:../../rust-perf/web/pkg"
+    "rust-perf": "file:../../rust-perf/pkg-web"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
